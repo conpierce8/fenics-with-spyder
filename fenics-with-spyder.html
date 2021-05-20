@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14259,57 +14259,24 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="About-this-notebook">About this notebook<a class="anchor-link" href="#About-this-notebook">&#182;</a></h1><p>This notebook documents a procedure to install FEniCS using Anaconda. Aside from the first step (installing Anaconda itself), all commands in this notebook can either be manually entered one at a time into a terminal window, or the notebook can be executed to perform the installation automatically.</p>
-<p>Note that this notebook is structured to be executable; Steps 2-## can be accomplished by running the commands in the code cells of this notebook. All terminal commands (i.e. non-Python) are preceded with an exclamation point (!). If you wish to type each command manually in the terminal, do not include the ! that precedes the commands. Also note that all conda commands include the <code>--yes</code> option to suppress the prompt to install packages. If you'd like to be prompted, remove the <code>--yes</code>.</p>
-<p style="background-color:#FF8888;">
-Note: running the code cells within this notebook has not been tested yet! You're probably better off typing each command individually into your terminal! I have commented out the commands in the code cells so you don't accidentally run them; note that you should not type `#!` in the terminal when running these commands manually.
-</p><h2 id="Requirements">Requirements<a class="anchor-link" href="#Requirements">&#182;</a></h2><p>This procedure was tested on a 64-bit laptop with an Intel Core i3 processor running Ubuntu 20.04.2 LTS.</p>
-<h2 id="Last-Updated">Last Updated<a class="anchor-link" href="#Last-Updated">&#182;</a></h2><p>This document last updated on 2021-05-20 01:06 CDT.</p>
+<h1 id="About-this-notebook">About this notebook<a class="anchor-link" href="#About-this-notebook">&#182;</a></h1><p>This notebook documents a procedure to install FEniCS using Anaconda. The <a href="#Step-1:-install-Anaconda">first step</a> in the notebook (installing Anaconda itself) needs to be completed from a terminal window. You can then continue to install manually by following <a href="#Method-1:-manual-installation-from-terminal">Method 1</a>, or, once you have a working Anaconda installation, you can launch this notebook using Jupyter and install automatically by running the commands in <a href="#Method-2:-automatic-installation-from-this-notebook">Method 2</a> (not yet implemented). An optional <a href="#Step-4-(optional">final step</a>:-Spyder-desktop-shortcut) is to create shortcuts for the desktop and the application launcher for convenient booting of Spyder.</p>
+<h2 id="Requirements">Requirements<a class="anchor-link" href="#Requirements">&#182;</a></h2><p>This procedure was tested on a 64-bit laptop with an Intel Core i3 processor running Ubuntu 20.04.2 LTS.</p>
+<h2 id="Last-Updated">Last Updated<a class="anchor-link" href="#Last-Updated">&#182;</a></h2><p>This document last updated on 2021-05-20 10:29 CDT.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Step-1:-install-Anaconda">Step 1: install Anaconda<a class="anchor-link" href="#Step-1:-install-Anaconda">&#182;</a></h1><p>To install Anaconda:</p>
+<h1 id="Step-1:-install-Anaconda">Step 1: install Anaconda<a class="anchor-link" href="#Step-1:-install-Anaconda">&#182;</a></h1><p>This step must be completed manually from the terminal, regardless of whether you plan to use the manual <a href="#Method-1:-manual-installation-from-terminal">Method 1</a> or the automatic <a href="#Method-2:-automatic-installation-from-this-notebook">Method 2</a>. (This is obvious, since you cannot execute this notebook without an Anaconda installation!) To install Anaconda:</p>
 <ol>
-<li>Download the installer from [<a href="https://www.anaconda.com/products/individual#Downloads">https://www.anaconda.com/products/individual#Downloads</a>]. As of the time of this writing (2021-05-19), the current version is Python 3.8.</li>
+<li>Download the Anaconda installer from <a href="https://www.anaconda.com/products/individual#Downloads">https://www.anaconda.com/products/individual#Downloads</a>. As of the time of this writing (2021-05-19), the current version is Python 3.8.</li>
 <li>Open a terminal window and <code>cd</code> to the location of the downloaded shell script.</li>
-<li>From the terminal, run the install script. (For me, this was achieved with the command:)</li>
-</ol>
-<!--
-Anaconda uninstall notes
+<li><p>From the terminal, run the install script. For me, this was achieved with the command:</p>
 
-Configuration directories:
-.conda
-.condarc
-.ipython
-.jupyter
-
-bashrc files:
-/etc/bash.bashrc
-/etc/.bashrc
-/home/connor/.bashrc
--->
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! ./Anaconda3-2021.05-Linux-x86_64.sh</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ol>
-<li>Accept the terms of the license agreement when prompted.</li>
+<pre><code>./Anaconda3-2021.05-Linux-x86_64.sh</code></pre>
+</li>
+<li><p>Accept the terms of the license agreement when prompted.</p>
+</li>
 <li><p>Accept the default installation location (or choose another location if you must). For me, this was</p>
 
 <pre><code>/home/connor/anaconda3</code></pre>
@@ -14326,47 +14293,13 @@ bashrc files:
 <pre><code>(base) connor@connor-Vostro-1540: ~/Downloads$</code></pre>
 <p>The string <code>(base)</code> indicates that the conda environment <code>base</code> is currently active. To check that the Anaconda setup worked correctly, run the command</p>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! which python</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<pre><code>which python</code></pre>
 <p>The terminal should display the path to the Python executable in the Anaconda environment, e.g.</p>
 
 <pre><code>/home/connor/anaconda3/bin/python</code></pre>
 <p>If you run</p>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! which -a python3</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<pre><code>which -a python3</code></pre>
 <p>you will see a list of all installed Python versions, e.g.</p>
 
 <pre><code>/home/connor/anaconda3/bin/python3
@@ -14378,267 +14311,91 @@ bashrc files:
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Step-2:-set-up-conda-environments">Step 2: set up <code>conda</code> environments<a class="anchor-link" href="#Step-2:-set-up-conda-environments">&#182;</a></h1><p>In this section, we set up a new conda environment in which FEniCS will be installed. First, we will set up a conda environment called <code>fenicsproject</code>. I recommend using the Python version from the official Anaconda channels (currently 3.8 as of 2021-05-19), since I've had issues when using the Python 3.9 interpreter from the <code>conda-forge</code> channel. I also like to install packages from the official Anaconda channel when possible. Therefore, rather than use the <code>-c conda-forge</code> option (which seems to prompt all packages to be installed from conda-forge) when creating my environment (as suggested <a href="https://fenicsproject.org/download/">here</a>), I first create the environment without installing FEniCS, configure my conda environment with <code>conda-forge</code> as my second-priority channel, and then install FEniCS in the last step. Stepwise, this looks like this:</p>
+<h1 id="Method-1:-manual-installation-from-terminal">Method 1: manual installation from terminal<a class="anchor-link" href="#Method-1:-manual-installation-from-terminal">&#182;</a></h1><p>In this section, we go through a sequence of commands that can be typed one-by-one into the terminal to set up FEniCS with Spyder. Note that the conda commands used in this method include the <code>--yes</code> option to suppress the prompt to install packages. If you'd like to be prompted during each step, remove the <code>--yes</code>.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Step-2:-set-up-conda-environments">Step 2: set up conda environments<a class="anchor-link" href="#Step-2:-set-up-conda-environments">&#182;</a></h2><p>In this section, we set up a new conda environment in which FEniCS will be installed. First, we will set up a conda environment called "fenicsproject". I recommend using the Python version from the official Anaconda channels (currently 3.8 as of 2021-05-19), since I've had issues when using the Python 3.9 interpreter from the "conda-forge" channel. I also like to install packages from the official Anaconda channel when possible. Therefore, rather than use the <code>-c conda-forge</code> option from the <a href="https://fenicsproject.org/download/">standard installation instructions</a> (which seems to prompt all packages to be installed from conda-forge) when creating my environment, I first create the environment without installing FEniCS, configure my conda environment with "conda-forge" as my second-priority channel, and then install FEniCS in the last step. Stepwise, this looks like this:</p>
 <ol>
-<li>Create the conda environement named <code>fenicsproject</code> and install Python 3.8. From the terminal, run </li>
+<li><p>Create the conda environement named "fenicsproject" and install Python 3.8. From the terminal, run</p>
+
+<pre><code>conda create -n fenicsproject --yes python=3.8.*</code></pre>
+</li>
+<li><p>Activate the fenicsproject environment:</p>
+
+<pre><code>conda activate fenicsproject</code></pre>
+</li>
+<li><p>Set "conda-forge" as an alternate package source:</p>
+
+<pre><code>conda config --append channels conda-forge</code></pre>
+</li>
+<li><p>Install FEniCS:</p>
+
+<pre><code>conda install --yes fenics</code></pre>
+</li>
 </ol>
+<h3 id="Verify-conda-environments">Verify conda environments<a class="anchor-link" href="#Verify-conda-environments">&#182;</a></h3><p>If we run</p>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! conda create -n fenicsproject --yes python=3.8.*</span>
-</pre></div>
+<pre><code>conda list fenics
+conda list spyder</code></pre>
+<p>we see that the "fenics" package (and several associated packages) are installed in the "fenicsproject" environment, but Spyder is not. On the other hand, if we then run the following:</p>
 
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ol>
-<li>Activate the fenicsproject environment:</li>
-</ol>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! conda activate fenicsproject</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ol>
-<li>Set <code>conda-forge</code> as an alternate package source:</li>
-</ol>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! conda config --append channels conda-forge</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ol>
-<li>Install FEniCS:</li>
-</ol>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! conda install --yes fenics</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Verify-conda-environments">Verify conda environments<a class="anchor-link" href="#Verify-conda-environments">&#182;</a></h2><p>If we run</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! conda list fenics</span>
-<span class="c1">#! conda list spyder</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>we see that the <code>fenics</code> package (and several associated packages) are installed in the <code>fenicsproject</code> environment, but Spyder is not. On the other hand, if we run the following:</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! conda activate base</span>
-<span class="c1">#! conda list fenics</span>
-<span class="c1">#! conda list spyder</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>we see that Spyder is installed in the base environment but FEniCS is not. I set up my installation like this in order to:</p>
+<pre><code>conda activate base
+conda list fenics
+conda list spyder</code></pre>
+<p>we see that Spyder is installed in the "base" environment but FEniCS is not. I set up my installation like this in order to:</p>
 <ol>
 <li>Minimize the number of FEniCS and Spyder installations</li>
 <li>Separate the FEniCS and Spyder dependencies (whether or not they clash at all, I don't know)</li>
 </ol>
 <p>Finally, if we run</p>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! which spyder</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<pre><code>which spyder</code></pre>
 <p>from the base environment, we see that Spyder will be run from the Anaconda installation (and not from somewhere else on our system).</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Step-3:-Spyder-console-interpreter">Step 3: Spyder console interpreter<a class="anchor-link" href="#Step-3:-Spyder-console-interpreter">&#182;</a></h1><p>If we try to run a FEniCS code from our current setup, we will get an error when we try to</p>
+<h2 id="Step-3:-Spyder-console-interpreter">Step 3: Spyder console interpreter<a class="anchor-link" href="#Step-3:-Spyder-console-interpreter">&#182;</a></h2><p>If we try to run a FEniCS code from our current setup, we will get an error when we try to</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fenics</span> <span class="k">as</span> <span class="nn">fe</span>
 </pre></div>
-<p>this is because the Spyder default is to open the console using the same Python interpreter in which Spyder is running. To run FEniCS codes, we must tell Spyder to open the console using the Python interpreter found in the "fenicsproject" environment. In order for this to succeed, we must have the "spyder-kernels" package installed in the "fenicsproject" environment. It's important to install the correct version of "spyder-kernels" to be compatible with our Spyder installation (Spyder seems to be picky about this, we'll get an error if we have the wrong version). Above, when we ran the command:</p>
+<p>This is because Spyder's default setting is to open the console using the same Python interpreter that was used to run Spyder. To run FEniCS codes, we must tell Spyder to open the console using the Python interpreter found in the "fenicsproject" environment. In order for this to succeed, we must have the "spyder-kernels" package installed in the "fenicsproject" environment. It's important to install the correct version of "spyder-kernels" that is compatible with our Spyder installation (Spyder seems to be picky about this, we'll get an error if we have the wrong version). Above, when I ran the command:</p>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! conda list spyder</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<pre><code>conda list spyder</code></pre>
 <p>we saw that "spyder-kernels" version 1.10.2 was installed in the base environment. This is the version we need to install in the "fenicsproject" environment:</p>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! conda activate fenicsproject</span>
-<span class="c1">#! conda install --yes spyder-kernels=1.10.2</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<pre><code>conda activate fenicsproject
+conda install --yes spyder-kernels=1.10.2</code></pre>
 <p>To instruct Spyder to open consoles using the Python interpreter from the "fenicsproject" environment, launch Spyder:</p>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! conda activate base</span>
-<span class="c1">#! spyder</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In <code>Tools &gt; Preferences &gt; Python Interpreter &gt; Python Interpreter</code>, check the radio button for "Use the following Python interpreter:". In the box below, select the Python interpreter in the "fenicsproject" environment, e.g.</p>
+<pre><code>conda activate base
+spyder</code></pre>
+<p>In <strong>Tools &gt; Preferences &gt; Python Interpreter &gt; Python Interpreter</strong>, select the radio button for "Use the following Python interpreter:". In the box below the radio button, select the Python interpreter in the "fenicsproject" environment, e.g.</p>
 
 <pre><code>/home/connor/anaconda3/envs/fenicsproject/bin/python</code></pre>
 <p>Click OK. In the status bar at the bottom of the Spyder window (if you're using Spyder 4.2.5 like I am), you'll see "conda: fenicsproject (Python 3.8.X)", which tells you that your consoles will now be running from the "fenicsproject" environment.</p>
 <p>At this point, you should be all set up to run FEniCS with Spyder.</p>
-<h2 id="(Optional)-Enabling-plotting-in-separate-window">(Optional) Enabling plotting in separate window<a class="anchor-link" href="#(Optional)-Enabling-plotting-in-separate-window">&#182;</a></h2><p>If you prefer to see figures in a separate window rather than inline in the Spyder "Plots" pane, you will need to install the "pyqt" module in the "fenicsproject" environment:</p>
+<h3 id="(Optional)-Enabling-plotting-in-separate-window">(Optional) Enabling plotting in separate window<a class="anchor-link" href="#(Optional)-Enabling-plotting-in-separate-window">&#182;</a></h3><p>If you prefer to see figures in a separate window rather than inline in the Spyder "Plots" pane, you will need to install the "pyqt" module in the "fenicsproject" environment:</p>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! conda activate fenicsproject</span>
-<span class="c1">#! conda install --yes pyqt</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>To enable plotting in a separate window, go to <code>Tools &gt; Preferences &gt; IPython console &gt; Graphics &gt; Graphics backend</code> and choose <code>Qt5</code> for the backend.</p>
+<pre><code>conda activate fenicsproject
+conda install --yes pyqt</code></pre>
+<p>To enable plotting in a separate window, go to <strong>Tools &gt; Preferences &gt; IPython console &gt; Graphics &gt; Graphics backend</strong> and choose "Qt5" for the backend. When you click "OK", Spyder will probably prompt you to restart the kernel. I have found that this often produces a warning, an error, or the console simply "hangs". Opening a new console seems to fix this and cause the changes to take effect.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Step-4-(optional):-Spyder-desktop-shortcut">Step 4 (optional): Spyder desktop shortcut<a class="anchor-link" href="#Step-4-(optional):-Spyder-desktop-shortcut">&#182;</a></h1><p>If you'd prefer not to boot Spyder from the terminal every time, you can create a desktop shortcut. The long form of this explanation can be found here: <a href="https://www.howtogeek.com/445303/how-to-create-desktop-shortcuts-on-ubuntu/">https://www.howtogeek.com/445303/how-to-create-desktop-shortcuts-on-ubuntu/</a>. The short form is this:</p>
+<h1 id="Method-2:-automatic-installation-from-this-notebook">Method 2: automatic installation from this notebook<a class="anchor-link" href="#Method-2:-automatic-installation-from-this-notebook">&#182;</a></h1><p><em>Possibly coming soon. <a href="https://jakevdp.github.io/blog/2017/12/05/installing-python-packages-from-jupyter">Installing Python packages from Jupyter is non-trivial</a> and I still need to wrap my head around it.</em></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Step-4-(optional):-Spyder-desktop-shortcut">Step 4 (optional): Spyder desktop shortcut<a class="anchor-link" href="#Step-4-(optional):-Spyder-desktop-shortcut">&#182;</a></h1><p>This final step can be completed manually after using either Method 1 or Method 2 to set up FEniCS and Spyder.</p>
+<p>If you'd prefer not to boot Spyder from the terminal every time, you can create a desktop shortcut. The long form of this explanation can be found here: <a href="https://www.howtogeek.com/445303/how-to-create-desktop-shortcuts-on-ubuntu/">https://www.howtogeek.com/445303/how-to-create-desktop-shortcuts-on-ubuntu/</a>. The short form is this:</p>
 <ol>
 <li><p>Create a text file named "spyder.desktop" in your Documents folder and enter the following (substituting the appropriate path to Spyder for your installation):</p>
 
@@ -14657,8 +14414,12 @@ Keywords=Python,dev</code></pre>
 <li><p>Copy the file to your desktop.</p>
 </li>
 <li>Right-click on the file and select "Allow Launching". You should see the Spyder icon appear. Double-clicking should launch Spyder.</li>
-<li>To allow the file to be launched from the GNOME launcher, you should also copy the file to <code>~/.local/share/applications</code>:</li>
+<li><p>To allow the file to be launched from the GNOME launcher, you should also copy the file to <code>~/.local/share/applications</code>:</p>
+
+<pre><code>cp ~/Documents/spyder.desktop ~/.local/share/applications</code></pre>
+</li>
 </ol>
+<p>You should now see Spyder appear in your list of installed programs when you click the "Show Applications" button on the dash.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14667,7 +14428,7 @@ Keywords=Python,dev</code></pre>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="ch">#! cp ~/Documents/spyder.desktop ~/.local/share/applications</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
      </div>
