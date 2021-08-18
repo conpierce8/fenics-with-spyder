@@ -14260,8 +14260,34 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="About-this-notebook">About this notebook<a class="anchor-link" href="#About-this-notebook">&#182;</a></h1><p>This notebook documents a procedure to install FEniCS using Anaconda. The <a href="#Step-1:-install-Anaconda">first step</a> in the notebook (installing Anaconda itself) needs to be completed from a terminal window. You can then continue to install manually by following <a href="#Method-1:-manual-installation-from-terminal">Method 1</a>, or, once you have a working Anaconda installation, you can launch this notebook using Jupyter and install automatically by running the commands in <a href="#Method-2:-automatic-installation-from-this-notebook">Method 2</a> (not yet implemented). An optional <a href="#Step-4-(optional">final step</a>:-Spyder-desktop-shortcut) is to create shortcuts for the desktop and the application launcher for convenient booting of Spyder.</p>
-<h2 id="Requirements">Requirements<a class="anchor-link" href="#Requirements">&#182;</a></h2><p>This procedure was tested on a 64-bit laptop with an Intel Core i3 processor running Ubuntu 20.04.2 LTS.</p>
-<h2 id="Last-Updated">Last Updated<a class="anchor-link" href="#Last-Updated">&#182;</a></h2><p>This document last updated on 2021-05-20 10:29 CDT.</p>
+<h2 id="Requirements">Requirements<a class="anchor-link" href="#Requirements">&#182;</a></h2><p>This procedure has been tested on:</p>
+<ul>
+<li>a 64-bit laptop with an Intel Core i3 processor running Ubuntu 20.04.2 LTS</li>
+<li>a 64-bit miniserver (Meerkat) with i7 processor running Ubuntu 20.04.2 LTS</li>
+</ul>
+<h2 id="Last-Updated">Last Updated<a class="anchor-link" href="#Last-Updated">&#182;</a></h2><p>This document last updated on 2021-06-18.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Step-0:-removing-a-pre-existing-FEniCS-installation">Step 0: removing a pre-existing FEniCS installation<a class="anchor-link" href="#Step-0:-removing-a-pre-existing-FEniCS-installation">&#182;</a></h1><p>If you have arrived here after discovering that your installation of FEniCS is dysfunctional, you may want to remove your previous FEniCS installation to prevent any conflicts with the Anaconda installation you are about to install.</p>
+<h2 id="apt-installation"><code>apt</code> installation<a class="anchor-link" href="#apt-installation">&#182;</a></h2><p>If you installed FEniCS using <code>apt</code>, the <code>purge</code> option with auto remove should clear FEniCS and all its configuration and dependent packages so that you can create a fresh installation using the instructions in this document.</p>
+<p>In a fresh terminal window (Ctrl+Shift+t), type:</p>
+
+<pre><code>sudo apt-get purge --auto-remove fenics</code></pre>
+<p>If you used a PPA to install the software, you may need to also run:</p>
+
+<pre><code>sudo ppa-purge ppa:fenics-packages/fenics</code></pre>
+<h2 id="Anaconda-installation">Anaconda installation<a class="anchor-link" href="#Anaconda-installation">&#182;</a></h2><p>If the previous installation is in Anaconda you can remove by FEniCS installation by removing the entire conda environment containaing FEniCS. With the terminal (base) environment active, you can remove the FEniCS environment using:</p>
+
+<pre><code>conda env remove -n fenicsproject</code></pre>
+<p>or</p>
+
+<pre><code>conda remove -n fenicsproject --all</code></pre>
+<p>will have the same effect. If you installed FEniCS to a different conda environment than <code>fenicsproject</code>, replace <code>fenicsproject</code> with the environment name.</p>
+<p>However, since Spyder is within Anaconda, you may be able to skip to step 2b and associate Spyder without removing FEniCS.</p>
+<p>If you plan to plot FEniCS objects directly from Python, you'll need the <code>matplotlib</code> module. In this case, removing the existing environment and creating a fresh enivronment may be the best idea before moving to step 2a.</p>
 
 </div>
 </div>
@@ -14311,17 +14337,22 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Method-1:-manual-installation-from-terminal">Method 1: manual installation from terminal<a class="anchor-link" href="#Method-1:-manual-installation-from-terminal">&#182;</a></h1><p>In this section, we go through a sequence of commands that can be typed one-by-one into the terminal to set up FEniCS with Spyder. Note that the conda commands used in this method include the <code>--yes</code> option to suppress the prompt to install packages. If you'd like to be prompted during each step, remove the <code>--yes</code>.</p>
+<h1 id="Option-A:-manual-installation-from-terminal">Option A: manual installation from terminal<a class="anchor-link" href="#Option-A:-manual-installation-from-terminal">&#182;</a></h1><h2 id="Step-2:-Install-FEniCS">Step 2: Install FEniCS<a class="anchor-link" href="#Step-2:-Install-FEniCS">&#182;</a></h2><p>In this section, we go through a sequence of commands that can be typed one-by-one into the terminal to set up FEniCS with Spyder. Note that the conda commands used in this method include the <code>--yes</code> option to suppress the prompt to install packages. If you'd like to be prompted during each step, remove the <code>--yes</code>.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Step-2:-set-up-conda-environments">Step 2: set up conda environments<a class="anchor-link" href="#Step-2:-set-up-conda-environments">&#182;</a></h2><p>In this section, we set up a new conda environment in which FEniCS will be installed. First, we will set up a conda environment called "fenicsproject". I recommend using the Python version from the official Anaconda channels (currently 3.8 as of 2021-05-19), since I've had issues when using the Python 3.9 interpreter from the "conda-forge" channel. I also like to install packages from the official Anaconda channel when possible. Therefore, rather than use the <code>-c conda-forge</code> option from the <a href="https://fenicsproject.org/download/">standard installation instructions</a> (which seems to prompt all packages to be installed from conda-forge) when creating my environment, I first create the environment without installing FEniCS, configure my conda environment with "conda-forge" as my second-priority channel, and then install FEniCS in the last step. Stepwise, this looks like this:</p>
+<h3 id="Step-2.1:-Set-up-conda-environments">Step 2.1: Set up conda environments<a class="anchor-link" href="#Step-2.1:-Set-up-conda-environments">&#182;</a></h3><p>In this section, we set up a new conda environment in which FEniCS will be installed. First, we will set up a conda environment called "fenicsproject". I recommend using the Python version from the official Anaconda channels (currently 3.8 as of 2021-05-19), since I've had issues when using the Python 3.9 interpreter from the "conda-forge" channel. I also like to install packages from the official Anaconda channel when possible. Therefore, rather than use the <code>-c conda-forge</code> option from the <a href="https://fenicsproject.org/download/">standard installation instructions</a> (which seems to prompt all packages to be installed from conda-forge) when creating my environment, I first create the environment without installing FEniCS, configure my conda environment with "conda-forge" as my second-priority channel, and then install FEniCS in the last step. Stepwise, this looks like this:</p>
 <ol>
-<li><p>Create the conda environement named "fenicsproject" and install Python 3.8. From the terminal, run</p>
+<li><p>Create the conda environment named "fenicsproject" and install Python 3.8. From the terminal, run</p>
 
 <pre><code>conda create -n fenicsproject --yes python=3.8.*</code></pre>
+<ul>
+<li>If you wish to install <code>matplotlib</code>, it is best to install it at this point to avoid dependency conflicts that may arise after you install <code>fenics</code>. To install <code>matplotlib</code>, use instead:
+<pre><code> conda create -n fenicsproject --yes python=3.8 matplotlib</code></pre>
+</li>
+</ul>
 </li>
 <li><p>Activate the fenicsproject environment:</p>
 
@@ -14331,12 +14362,16 @@ a.anchor-link {
 
 <pre><code>conda config --append channels conda-forge</code></pre>
 </li>
-<li><p>Install FEniCS:</p>
+</ol>
+<h3 id="Step-2.2:-Install-FEniCS-and-optional-packages">Step 2.2: Install FEniCS and optional packages<a class="anchor-link" href="#Step-2.2:-Install-FEniCS-and-optional-packages">&#182;</a></h3><p>You are now ready to install FEniCS:</p>
 
 <pre><code>conda install --yes fenics</code></pre>
-</li>
-</ol>
-<h3 id="Verify-conda-environments">Verify conda environments<a class="anchor-link" href="#Verify-conda-environments">&#182;</a></h3><p>If we run</p>
+<p><strong>Optional</strong>: FEniCS contains a select few simple built-in meshes. For more complicated problems, you will need to install another meshing package. A comparison of several free meshing packages can be found here: <a href="https://github.com/nschloe/meshgen-comparison">https://github.com/nschloe/meshgen-comparison</a>. You may also wish to install the <code>mshr</code> and <code>meshio</code> packages. <code>mshr</code> is no longer maintained, but is tightly integrated with FEniCS and provides a useful extension of the FEniCS built-in meshes. In addition, <code>mshr</code> may be helpful for new FEniCS users because it is used in many of the FEniCS tutorials. The mesh format converter, <code>meshio</code>, is a very helpful tool that enables FEniCS to work with meshes generated by a variety of meshing packages.</p>
+<p>To install <code>meshio</code> and <code>mshr</code>, run the following commands:</p>
+
+<pre><code>conda install meshio
+conda install mshr</code></pre>
+<h3 id="Step-2.3:-Verify-conda-environments">Step 2.3: Verify conda environments<a class="anchor-link" href="#Step-2.3:-Verify-conda-environments">&#182;</a></h3><p>If we run</p>
 
 <pre><code>conda list fenics
 conda list spyder</code></pre>
@@ -14365,7 +14400,7 @@ conda list spyder</code></pre>
 <p>This is because Spyder's default setting is to open the console using the same Python interpreter that was used to run Spyder. To run FEniCS codes, we must tell Spyder to open the console using the Python interpreter found in the "fenicsproject" environment. In order for this to succeed, we must have the "spyder-kernels" package installed in the "fenicsproject" environment. It's important to install the correct version of "spyder-kernels" that is compatible with our Spyder installation (Spyder seems to be picky about this, we'll get an error if we have the wrong version). Above, when I ran the command:</p>
 
 <pre><code>conda list spyder</code></pre>
-<p>we saw that "spyder-kernels" version 1.10.2 was installed in the base environment. This is the version we need to install in the "fenicsproject" environment:</p>
+<p>I saw that "spyder-kernels" version 1.10.2 was installed in the base environment (e.g. yours may be 2.0.1). Use the version you found to install in the "fenicsproject" environment if your machine gave a different version (e.g. replacing <code>1.10.2</code> with <code>2.0.1</code>):</p>
 
 <pre><code>conda activate fenicsproject
 conda install --yes spyder-kernels=1.10.2</code></pre>
@@ -14373,7 +14408,7 @@ conda install --yes spyder-kernels=1.10.2</code></pre>
 
 <pre><code>conda activate base
 spyder</code></pre>
-<p>In <strong>Tools &gt; Preferences &gt; Python Interpreter &gt; Python Interpreter</strong>, select the radio button for "Use the following Python interpreter:". In the box below the radio button, select the Python interpreter in the "fenicsproject" environment, e.g.</p>
+<p>In <strong>Tools &gt; Preferences &gt; Python Interpreter &gt; Python Interpreter</strong>, select the radio button for "Use the following Python interpreter:". In the box below the radio button, select the Python interpreter in the "fenicsproject" environment, using the path from the first part of 2b. For example, mine was:</p>
 
 <pre><code>/home/connor/anaconda3/envs/fenicsproject/bin/python</code></pre>
 <p>Click OK. In the status bar at the bottom of the Spyder window (if you're using Spyder 4.2.5 like I am), you'll see "conda: fenicsproject (Python 3.8.X)", which tells you that your consoles will now be running from the "fenicsproject" environment.</p>
